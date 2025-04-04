@@ -5,18 +5,16 @@ class LoginPage{
         this.username = page.locator("[name='name']");
         this.email = page.locator(".signup-form [name='email']");
         this.signUp = page.locator(".signup-form .btn");
+        this.newUserText = page.locator(".signup-form h2");
     }
 
-    async goToUrl(){
-        await this.page.goto("https://www.automationexercise.com/login");
-        // await this.page.waitForLoadState("networkidle");
+    async getNewUserText(){
+        return await this.newUserText.innerText();
     }
 
     async userSignUp(username,email){
         await this.username.fill(username);
         await this.email.fill(email);
-        // await this.page.pause();
-        await this.page.locator(".fc-dialog.fc-choice-dialog .fc-footer-buttons .fc-button-label").first().click();
         await this.signUp.click();
     }
 
